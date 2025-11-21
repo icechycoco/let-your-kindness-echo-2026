@@ -1,17 +1,17 @@
 import p5 from "p5";
 
 // -------- Canvas defaults --------
-let CANVAS_W = 1240/2;
+let CANVAS_W = 1240*0.8;
 // 1080;
-let CANVAS_H = 1748/2;
+let CANVAS_H = 1748*0.8;
 // 1920;
 
 let PREVIEW_SCALE = 0.3;
 
 // ==== เพิ่มด้านบนไฟล์ (หรือไว้ใกล้ ๆ ค่า config) ====
-const H_PADDING   = 20;   // กันชนซ้าย/ขวา (ป้องกันติดขอบ)
-const LINE_STEP_PX   = 130;  // distance between line tops (i.e., "row height")
-const TEXT_SIZE_PX   = 140;   // font size (fixed)
+const H_PADDING   = 20*0.8;   // กันชนซ้าย/ขวา (ป้องกันติดขอบ)
+const LINE_STEP_PX   = 130*0.8;  // distance between line tops (i.e., "row height")
+const TEXT_SIZE_PX   = 140*0.8;   // font size (fixed)
 
 const DEFAULT_PHRASE = "HOPE 2026 TREAT YOU LIKEEE THE MAIN CHARACTER";
 
