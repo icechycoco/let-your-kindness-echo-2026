@@ -1,8 +1,8 @@
 import p5 from "p5";
 // -------- Canvas defaults --------
-let CANVAS_W = 1240;
+let CANVAS_W = 1240 / 2;
 // 1080;
-let CANVAS_H = 1748;
+let CANVAS_H = 1748 / 2;
 // 1920;
 let PREVIEW_SCALE = 0.3;
 // ==== เพิ่มด้านบนไฟล์ (หรือไว้ใกล้ ๆ ค่า config) ====
