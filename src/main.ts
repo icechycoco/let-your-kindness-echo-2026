@@ -110,15 +110,16 @@ function buildRowsFromText(multiline: string): Row[] {
 
 // -------- Scale canvas (UI) --------
 function applyPreviewScale(p: p5, exportW: number, exportH: number, scale: number) {
-  const elt = (p as any)._curElement.elt as HTMLCanvasElement;
+  const elt = (p as any)._curElement?.elt as HTMLCanvasElement | undefined;
+  if (!elt) return;
   const s = elt.style;
-  // ตั้งค่าขนาดพรีวิว (px) + ใส่ !important กันโดน CSS อื่นทับ
-  s.setProperty("width",  `${exportW * scale}px`, "important");
-  s.setProperty("height", `${exportH * scale}px`, "important");
-  s.setProperty("max-width", "none", "important");
+  s.setProperty("width",      `${exportW * scale}px`, "important");
+  s.setProperty("height",     `${exportH * scale}px`, "important"); // <-- fixed quote
+  s.setProperty("max-width",  "none", "important");
   s.setProperty("max-height", "none", "important");
-  s.setProperty("flex", "none", "important");     // กัน flex container ดึงยืด
-  s.setProperty("object-fit", "contain", "important");
+  s.setProperty("flex",       "none", "important");
+  s.setProperty("display",    "block", "important");
+  s.setProperty("visibility", "visible", "important");
 }
 
 // -------- DOM wiring (UI) --------
@@ -173,11 +174,14 @@ function wireUI(sk: p5) {
 const sketch = (p: p5) => {
 
   p.setup = () => {
+    console.log("[p5] setup()");
     const parent = document.getElementById("app")!;
     const c = p.createCanvas(CANVAS_W , CANVAS_H)
     c.parent(parent);
 
     p.pixelDensity(1);
+    // applyPreviewScale(p, CANVAS_W, CANVAS_H, PREVIEW_SCALE);
+    p.resizeCanvas(CANVAS_W, CANVAS_H);
     applyPreviewScale(p, CANVAS_W, CANVAS_H, PREVIEW_SCALE);
 
     //  // ย่อเฉพาะการแสดงผล ด้วย CSS (ไฟล์ที่เซฟยังคง 1080x1920)
@@ -194,6 +198,7 @@ const sketch = (p: p5) => {
   };
 
 p.draw = () => {
+  console.log("[p5] draw tick", p.frameCount);
   p.background("#ffffff");
   if (rows.length === 0) return;
 

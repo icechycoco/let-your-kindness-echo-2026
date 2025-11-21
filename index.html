@@ -71,8 +71,18 @@
         color: #111827;
         border-color: #6b7280;
       }
-      #app { width: 100%; display: flex; justify-content: center; }
-      canvas { display: block; }
+      /* #app { width: 100%; display: flex; justify-content: center; } */
+      #app {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 10px; /* ensure non-zero */
+      }
+      canvas {
+        display: block !important;
+        max-width: none !important;
+        max-height: none !important;
+      }
       small { color: #6b7280; }
       @font-face {
       font-family: "MyFont";
@@ -100,8 +110,8 @@
       <!-- <small>Tip: ใส่ secret code (เช่น <code>thisisforyou</code>) เพื่อแสดงข้อความลับอัตโนมัติ</small> -->
     </main>
 
-    <!-- <script type="module" src="/src/main.ts"></script> -->
-    <script type="module" crossorigin src="/let-your-kindness-echo-2026/assets/index-xxxxx.js"></script>
+    <script type="module" src="/src/main.ts"></script>
+    <!-- <script type="module" crossorigin src="/let-your-kindness-echo-2026/assets/index-xxxxx.js"></script> -->
     <script src="./vendor/gifjs/gif.js"></script>
     <script>
       window.__GIF_WORKER__ = "./vendor/gifjs/gif.worker.js";
