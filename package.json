@@ -16,6 +16,7 @@
     "vite": "^7.2.2"
   },
   "dependencies": {
+    "gif.js.optimized": "^1.0.1",
     "p5": "^2.1.1"
   }
 }
