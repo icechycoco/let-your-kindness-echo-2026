@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blessing 2026</title>
+    <!-- ฟอนต์สวย ๆ (ปรับได้ตามชอบ) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+      :root { color-scheme: light dark; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        display: flex; gap: 16px; padding: 16px;
+        background: #0f172a; color: #e5e7eb;
+      }
+      #controls { width: 340px; display: flex; flex-direction: column; gap: 10px; }
+      #text-input { width: 100%; resize: vertical; min-height: 160px; }
+      .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      button {
+        appearance: none; border: none; padding: 10px 14px; border-radius: 10px;
+        background: #334155; color: #e5e7eb; cursor: pointer; font-weight: 700;
+      }
+      button:hover { filter: brightness(1.07); }
+      small { opacity: 0.75; }
+      #app { flex: 1; min-width: 0; }
+      canvas { 
+        /* max-width: 100%; height: auto;  */
+        display: block; }
+      input[type="number"] { width: 90px; padding: 8px; border-radius: 8px; border: 1px solid #334155; background:#0b1220; color:#e5e7eb;}
+      label { font-size: 12px; opacity: 0.9; }
+      @font-face {
+      font-family: "MyFont";
+      src: url("/fonts/LuckiestGuy-Regular.ttf");
+      }
+    </style>
+  </head>
+  <body>
+    <div id="controls">
+      <h1 style="margin:0 0 8px 0;">Blessing 2026 Poster</h1>
+      <label for="text-input">ใส่ข้อความ (บรรทัดละ 1 บรรทัด)</label>
+      <textarea id="text-input">HOPE
+2026
+TREAT
+YOU
+LIKE&lt;3
+THE
+MAIN
+CHARACTER</textarea>
+
+      <div class="row">
+        <button id="apply-btn">Generate</button>
+        <button id="download-btn">Download PNG</button>
+      </div>
+
+      <div class="row">
+        <label>Canvas W</label><input type="number" id="w" value="1080" min="360" step="10">
+        <label>Canvas H</label><input type="number" id="h" value="1920" min="360" step="10">
+        <label>Blink (frames)</label><input type="number" id="blinkFrames" value="20" min="1" step="1">
+      </div>
+
+      <small>เคล็ดลับ: ข้อความจะถูกจำไว้ในเครื่องด้วย localStorage ให้เปิดมาแล้วเจอข้อความล่าสุดได้เลย</small>
+    </div>
+
+    <div id="app"></div>
+
+    <!-- Vite จะโหลดไฟล์นี้ -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
