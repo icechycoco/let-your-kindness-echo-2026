@@ -6,7 +6,7 @@ let CANVAS_W = 1240*0.8;
 let CANVAS_H = 1748*0.8;
 // 1920;
 
-let PREVIEW_SCALE = 0.5;
+let PREVIEW_SCALE = 0.4;
 
 const H_PADDING   = 20*0.8;   // กันชนซ้าย/ขวา
 const LINE_STEP_PX   = 140*0.8;  // distance between line tops 
@@ -17,8 +17,8 @@ const DEFAULT_PHRASE = "HOPE 2026 TREAT YOU LIKEEE THE MAIN CHARACTER";
 
 const secretMapWords: Record<string, string[]> = {
   // ตัวอย่าง:
-  "harmony99":  ["HNY2026","LIVE","FULLY","LAUGH","OFTEN","STAY","HEALTHY"],
-  "loveyou3000":  ["HELLO","2026","US","LOVE","LAUGHS","JOY","ON","REPEAT."],
+  "harmony99":  ["HNY2026","LIVE","FULLY","LAUGH","OFTEN","STAY","HEALTHY","LOVEYOU"],
+  "loveyou3000":  ["HELLO","-2026","US","LOVE","LAUGHS","JOY","ON","REPEAT"],
   "lottomylife":   ["GOOD","LUCK","FINDS","YOU","DAILY","AND","GO","EXTRA","ON","1&16"],
   "runhamtaro":   ["GO","GIRL","🏃‍♀️","THE","WORLD","TO","MORE","MILES","MORE","SMILES"],
   "imnotmay":   ["SUPER","FUN","YEAR","AHEAD","ENJOY","AND","OWN","IT","HPNY26"],
