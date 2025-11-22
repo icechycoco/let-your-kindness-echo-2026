@@ -6,24 +6,32 @@ let CANVAS_W = 1240*0.8;
 let CANVAS_H = 1748*0.8;
 // 1920;
 
-let PREVIEW_SCALE = 0.3;
+let PREVIEW_SCALE = 0.5;
 
-// ==== เพิ่มด้านบนไฟล์ (หรือไว้ใกล้ ๆ ค่า config) ====
-const H_PADDING   = 20*0.8;   // กันชนซ้าย/ขวา (ป้องกันติดขอบ)
-const LINE_STEP_PX   = 130*0.8;  // distance between line tops (i.e., "row height")
+const H_PADDING   = 20*0.8;   // กันชนซ้าย/ขวา
+const LINE_STEP_PX   = 140*0.8;  // distance between line tops 
 const TEXT_SIZE_PX   = 140*0.8;   // font size (fixed)
 
 const DEFAULT_PHRASE = "HOPE 2026 TREAT YOU LIKEEE THE MAIN CHARACTER";
 
 
-// หรือวิธีที่ 2: mapping รายโค้ด -> ข้อความเฉพาะเจาะจง
 const secretMapWords: Record<string, string[]> = {
   // ตัวอย่าง:
-  "foryou": ["YOU", "ARE", "THE", "MAIN", "CHARACTER"],
+  "harmony99":  ["HNY2026","LIVE","FULLY","LAUGH","OFTEN","STAY","HEALTHY"],
+  "loveyou3000":  ["HELLO","2026","US","LOVE","LAUGHS","JOY","ON","REPEAT."],
+  "lottomylife":   ["GOOD","LUCK","FINDS","YOU","DAILY","AND","GO","EXTRA","ON","1&16"],
+  "runhamtaro":   ["GO","GIRL","🏃‍♀️","THE","WORLD","TO","MORE","MILES","MORE","SMILES"],
+  "imnotmay":   ["SUPER","FUN","YEAR","AHEAD","ENJOY","AND","OWN","IT","HPNY26"],
+  "omeletto":   ["2026","TO","MORE","GOOD","FOOD","GREAT","FRIENDS","&","🍳"],
+  "dodmat":   ["MAY","YOUR","BOWL","FULL","OF","GOOD","BROTH","AND","NOODLES","🍜"],
+  "foryou":   ["GOOD","THINGS","COMING","TO","YOU","TRUST","GOD’S","TIMING"],
+  "cryingtiger":   ["HNY","2026","EVERYTHING","TURNS","EASIER","THIS","YEAR","<3"],
+  "dakotaclub":   ["HPNY", "NOT","SURE","ITS","AESTHETIC,","ENUFF","LOVE<3","BABY","F."],
+  "kitty26":   ["LETS","CONTINUE","TO","ANOTHER","365🔥","LOVE","YOU","ALWAYS"],
+  // "":   ["UNIVERSE","CONSPIRING","IN","YOUR","FAVOR.","✨","-","HNY2026"],
 };
 
 
-// ทำให้เทียบแบบไม่สนตัวพิมพ์เล็กใหญ่ และตัดช่องว่าง
 function applySecret(tokens: string[]): string[] {
   const out: string[] = [];
   for (const raw of tokens) {
@@ -38,14 +46,12 @@ function applySecret(tokens: string[]): string[] {
 }
 
 // -------- Palettes --------
-// light = main text (ชั้นหน้า) — สีคงเดิม
 const lightPalette: string[] = [
   "#FFE2FF", "#FFD576", "#CAE8C8", "#E8E2FF", "#FFD6C9",
   "#D3C2CD", "#F8CABA", "#EFCE7B", "#CBD183", 
   "#BDDC7D", "#C7D9E5", "#DDCEBA", "#F7EDAB"
 ];
 
-// mid/dark = back layers — สีคงเดิม แต่ “สลับตำแหน่ง” เพื่อให้เกิดเอฟเฟกต์กระพริบ
 const midPalette: string[] = [
   "#61A6F7", "#FF7029",
   "#F25595", "#849E15", "#92A2A6", "#6777B6", "#EBC75C",
@@ -79,7 +85,7 @@ type Row = {
 // -------- State --------
 let rows: Row[] = [];
 let rowH = 0;
-let blinkFrames = 20; // กระพริบทุกกี่เฟรม (ปรับใน UI)
+let blinkFrames = 30; // กระพริบทุกกี่เฟรม (ปรับใน UI)
 
 // -------- Utils --------
 function pickOne(arr: string[]): string {
@@ -87,19 +93,14 @@ function pickOne(arr: string[]): string {
 }
 
 function buildRowsFromText(multiline: string): Row[] {
-  // รวม whitespace ทุกแบบ (space, tab, newline) ให้เป็นช่องว่างเดียว
   const normalized = multiline.replace(/\s+/g, " ").trim();
 
-  // ถ้ากล่องว่าง ให้คืน array ว่าง
   if (!normalized) return [];
 
-  // ตัดด้วยช่องว่าง → ได้แต่ละ "คำ"
   const tokens = normalized.split(" ");
 
-  // ใช้ลอจิก secret code กับแต่ละคำ (รองรับการขยายโค้ดให้เป็นหลายคำ)
   const applied = applySecret(tokens);
 
-  // สร้าง rows พร้อมสุ่มสีจาก 3 พาเลต
   return applied.map((t) => ({
     text: t,
     mainColor: pickOne(lightPalette),
@@ -135,14 +136,12 @@ function wireUI(sk: p5) {
   const saved = localStorage.getItem("posterText");
   if (saved) ta.value = saved;
 
-  // initial rows
   rows = buildRowsFromText(DEFAULT_PHRASE);
 
     // wire UI
   document.querySelector<HTMLButtonElement>("#apply-btn")!
     .addEventListener("click", () => {
       const normalized = ta.value.replace(/\s+/g, " ").trim();
-      // ถ้ากด Generate แต่กล่องว่าง → แสดงค่าเริ่มต้นเหมือนเดิม
       rows = normalized ? buildRowsFromText(ta.value) : buildRowsFromText(DEFAULT_PHRASE);
     });
 
@@ -160,7 +159,6 @@ function wireUI(sk: p5) {
       sk.resizeCanvas(CANVAS_W, CANVAS_H);
     }
 
-    // อัปเดตความเร็วกระพริบ
     const bf = parseInt(blinkInput.value, 10);
     if (Number.isFinite(bf) && bf > 0) blinkFrames = bf;
   });
@@ -188,7 +186,6 @@ const sketch = (p: p5) => {
     // c.elt.style.width  = `${CANVAS_W * PREVIEW_SCALE}px`;
     // c.elt.style.height = `${CANVAS_H * PREVIEW_SCALE}px`;
     
-    // p.textFont("Inter, Arial, sans-serif");
     p.textFont("MyFont");
     console.log("MyFont")
     p.textStyle(p.BOLD);
@@ -202,9 +199,7 @@ p.draw = () => {
   p.background("#ffffff");
   if (rows.length === 0) return;
 
-  // Total block height with fixed line step
   const totalH = rows.length * LINE_STEP_PX;
-  // Top offset so the whole block is vertically centered
   const topStart = (p.height - totalH) / 2;
 
   for (let i = 0; i < rows.length; i++) {
@@ -212,18 +207,12 @@ p.draw = () => {
   }
 };
 
-// ==== ฟังก์ชัน drawRow (เปลี่ยนซิกเนเจอร์รับ topStart เพิ่ม) ====
+
 function drawRow(p: p5, r: Row, index: number, topStart: number) {
   // const topY = topStart + index * rowH;
   // const centerY = topY + rowH / 2;
   const topY     = topStart + index * LINE_STEP_PX;
   const centerY  = topY + LINE_STEP_PX / 2;
-
-  // // แถบพื้นหลังของแต่ละบรรทัด (จะเต็มกว้างก็ได้)
-  // p.noStroke();
-  // p.fill("#d0d5db");
-  // const stripeMarginY = rowH * 0.18;
-  // p.rect(0, topY + stripeMarginY, p.width, rowH - stripeMarginY * 2, 20);
 
   // layout
   // const tSize = (CANVAS_H * 0.85) / rows.length / 2 ;
@@ -232,7 +221,6 @@ function drawRow(p: p5, r: Row, index: number, topStart: number) {
   p.stroke("#202020");
   p.strokeWeight(8);
 
-  // คำนวณจำนวนเลเยอร์จากพื้นที่แนวนอนที่เหลือ (เว้นซ้ายขวา H_PADDING)
   const wordWidth = p.textWidth(r.text);
   const available = Math.max(0, p.width - 20 * H_PADDING - wordWidth);
 
@@ -245,10 +233,8 @@ function drawRow(p: p5, r: Row, index: number, topStart: number) {
   }
   const stepX = available / (layers - 1);
 
-  // ทำให้กรอบรวมของบรรทัดกึ่งกลางแนวนอนบนแคนวาส:
-  // กรอบรวม = wordWidth + (layers-1)*stepX
   const totalW = wordWidth + (layers - 1) * stepX;
-  const x0 = (p.width - totalW) / 2; // จุดเริ่มของชั้นหน้า (k=0)
+  const x0 = (p.width - totalW) / 2; 
 
   // Blink: สลับ back1/back2 ด้วยเฟรม (แต่สีเดิม)
   const blink = Math.floor(p.frameCount / blinkFrames) % 2;
@@ -257,7 +243,7 @@ function drawRow(p: p5, r: Row, index: number, topStart: number) {
   for (let k = layers - 1; k >= 0; k--) {
     let col: string;
     if (k === 0) {
-      col = r.mainColor; // ชั้นหน้า
+      col = r.mainColor; 
     } else {
       const useBack1 = ((k + blink) % 2 === 0);
       col = useBack1 ? r.back1 : r.back2;
