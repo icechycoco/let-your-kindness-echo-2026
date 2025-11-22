@@ -11,8 +11,8 @@ const TEXT_SIZE_PX = 140 * 0.8; // font size (fixed)
 const DEFAULT_PHRASE = "HOPE 2026 TREAT YOU LIKEEE THE MAIN CHARACTER";
 const secretMapWords = {
     // ตัวอย่าง:
-    "harmony99": ["HNY2026", "LIVE", "FULLY", "LAUGH", "OFTEN", "STAY", "HEALTHY"],
-    "loveyou3000": ["HELLO", "2026", "US", "LOVE", "LAUGHS", "JOY", "ON", "REPEAT."],
+    "harmony99": ["HNY2026", "LIVE", "FULLY", "LAUGH", "OFTEN", "STAY", "HEALTHY", "LOVEYOU"],
+    "loveyou3000": ["HELLO", "-2026", "US", "LOVE", "LAUGHS", "JOY", "ON", "REPEAT"],
     "lottomylife": ["GOOD", "LUCK", "FINDS", "YOU", "DAILY", "AND", "GO", "EXTRA", "ON", "1&16"],
     "runhamtaro": ["GO", "GIRL", "🏃‍♀️", "THE", "WORLD", "TO", "MORE", "MILES", "MORE", "SMILES"],
     "imnotmay": ["SUPER", "FUN", "YEAR", "AHEAD", "ENJOY", "AND", "OWN", "IT", "HPNY26"],
