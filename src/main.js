@@ -12,17 +12,17 @@ const DEFAULT_PHRASE = "HOPE 2026 TREAT YOU LIKEEE THE MAIN CHARACTER";
 const secretMapWords = {
     // ตัวอย่าง:
     "harmony99": ["HNY2026", "LIVE", "FULLY", "LAUGH", "OFTEN", "STAY", "HEALTHY", "LOVEYOU"],
-    "loveyou3000": ["HELLO", "-2026", "US", "LOVE", "LAUGHS", "JOY", "ON", "REPEAT"],
+    "loveyou3000": ["HELLO", "HNY2026", "US", "LOVE", "LAUGHS", "JOY", "ON", "REPEAT"],
     "lottomylife": ["GOOD", "LUCK", "FINDS", "YOU", "DAILY", "AND", "GO", "EXTRA", "ON", "1&16"],
-    "runhamtaro": ["GO", "GIRL", "🏃‍♀️", "THE", "WORLD", "TO", "MORE", "MILES", "MORE", "SMILES"],
+    "hamtaro": ["GO", "GIRL", "🏃‍♀️", "THE", "WORLD", "MORE", "MILES", "MORE", "SMILES"],
     "imnotmay": ["SUPER", "FUN", "YEAR", "AHEAD", "ENJOY", "AND", "OWN", "IT", "HPNY26"],
     "omeletto": ["2026", "TO", "MORE", "GOOD", "FOOD", "GREAT", "FRIENDS", "&", "🍳"],
     "dodmat": ["MAY", "YOUR", "BOWL", "FULL", "OF", "GOOD", "BROTH", "AND", "NOODLES", "🍜"],
-    "foryou": ["GOOD", "THINGS", "COMING", "TO", "YOU", "TRUST", "GOD’S", "TIMING"],
-    "cryingtiger": ["HNY", "2026", "EVERYTHING", "TURNS", "EASIER", "THIS", "YEAR", "<3"],
-    "dakotaclub": ["HPNY", "NOT", "SURE", "ITS", "AESTHETIC,", "ENUFF", "LOVE<3", "BABY", "F."],
+    "gymgirl": ["GOOD", "THINGS", "COMING", "TO", "YOU", "TRUST", "GODS", "TIMING"],
+    "cryingtiger": ["HNY", "2026", "EVERYTHING", "TURNS", "EASIER", "THIS", "YEAR", "<3", "LOVE"],
+    "dakotaclub": ["HPNY", "NOT", "SURE", "ITS", "AESTHETIC", "ENUFF", "LOVEU", "BABYF"],
     "kitty26": ["LETS", "CONTINUE", "TO", "ANOTHER", "365🔥", "LOVE", "YOU", "ALWAYS"],
-    // "":   ["UNIVERSE","CONSPIRING","IN","YOUR","FAVOR.","✨","-","HNY2026"],
+    "highfreqonly": ["UNIVERSE", "ALIGNING", "IN", "YOUR", "FAVOR", "&", "EVERYTHING", "HNY2026"],
 };
 function applySecret(tokens) {
     const out = [];
