@@ -4,7 +4,7 @@ let CANVAS_W = 1240 * 0.8;
 // 1080;
 let CANVAS_H = 1748 * 0.8;
 // 1920;
-let PREVIEW_SCALE = 0.4;
+let PREVIEW_SCALE = 0.3;
 const H_PADDING = 20 * 0.8; // กันชนซ้าย/ขวา
 const LINE_STEP_PX = 140 * 0.8; // distance between line tops 
 const TEXT_SIZE_PX = 140 * 0.8; // font size (fixed)
